@@ -25,13 +25,13 @@ componentWillUnmount() {
 }
 
 handleScroll() {
-  if (window.scrollY > 100) {
-    console.log("should lock");
+
+  let lockPoint = 50;
+  if (window.scrollY > lockPoint && !this.state.scrollingLock ){
     this.setState({
       scrollingLock: true
     });
-  } else if (window.scrollY < 100) {
-    console.log("not locked" );
+  } else if (window.scrollY < lockPoint && this.state.scrollingLock) {
     this.setState({
       scrollingLock: false
     });
@@ -40,7 +40,8 @@ handleScroll() {
 }
   render() {
     return (
-     <nav className={[styles.nav, this.state.scrollingLock ? styles.sticky : ""].join(" ")} >
+      <div>
+        <nav className={[styles.nav, this.state.scrollingLock ? styles.sticky : ""].join(" ")} >
          <ul className={styles.ul}>
             {this.props.elements.map(element => (
                 <li className={styles.li}>
@@ -51,6 +52,10 @@ handleScroll() {
             ))}
          </ul>
      </nav>
+     <div className={styles.spacer}>
+     </div>
+      </div>
+     
     )
   }
 }
