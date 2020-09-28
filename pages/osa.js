@@ -7,17 +7,14 @@ import Card from '../components/card'
 import styles from './css/osa.module.css'
 import gql from 'graphql-tag';
 import Query  from '../components/query';
+import RichText  from '../components/rich-text';
 
 export default function OSA() {
 
     const query = gql`
   {
-    onskelista {
+    osa {
       header
-      header_image{
-        url
-      }
-      text_on_header_image
       page_content
     }
     navigation {
@@ -38,14 +35,14 @@ export default function OSA() {
         console.log(process.env);
         console.log(process.env.API_URL);
         console.log(process.env.MAPS_API_KEY);
-        console.log(process.env.EMAILJS_SERVICE_ID);
-        console.log(process.env.EMAILJS_TEMPLATE_ID);
+        console.log(process.env.EMAILJS_TOKEN);
+        console.log(process.env.EMAILJS_OSA_TEMPLATE_ID);
         console.log(process.env.EMAILJS_USER_ID);
         sendEmail(data);
     }
     const sendEmail = data => {
         
-    emailjs.send("default_service", process.env.EMAILJS_TEMPLATE_ID, data, process.env.EMAILJS_USER_ID)
+    emailjs.send("default_service", "osa", data, process.env.EMAILJS_USER_ID)
     .then(function(response) {
        console.log('SUCCESS!', response.status, response.text);
     }, function(error) {
@@ -62,25 +59,63 @@ export default function OSA() {
       </Head>
     
     <Query query={query} id={null}>
-    {({ data: { navigation: {links} }}) => {
+    {({ data: { osa: {header, page_content}, navigation: {links}} }) => {
         return (
         <div>
             <Navigation elements={links}/>
         <main className={styles.wrapper}>
             
         <Card className={styles.card}>
+        <h1>
+          {header}
+        </h1>
+        <RichText>
+          {page_content}
+        </RichText>
+
         <form onSubmit={handleSubmit(onSubmit)}>
-            <input type="text" placeholder="Förnamn" name="first_name" ref={register({required: true})} />
 
-            <input type="text" placeholder="Efternamn" name="last_name" ref={register({required: true})} />
+        <label className={styles.pure_material_textfield_outlined}>
+          <input type="text" placeholder=" "  name="first_name" ref={register({required: true})} />
+          <span>Förnamn</span>
+        </label>
 
-            <input type="text" placeholder="Epost" name="email" ref={register({required: true})} />
-
-            <input type="text" placeholder="Telefon" name="phone" ref={register({required: true})} />
+           
+        <label className={styles.pure_material_textfield_outlined}>
+            <input type="text" placeholder=" " name="last_name" ref={register({required: true})} />
+            <span>Efternamn</span>
+        </label>
+        <br/>
+        <label className={styles.pure_material_textfield_outlined}>
+            <input type="text" placeholder=" " name="email" ref={register({required: true})} />
+            <span>Epost</span>
+        </label>    
+        <br/>
+        
+            <input type="radio" id="grill_ja" name="grill" value="Ja" ref={register({required: true})}/>
+            <label for="grill_ja">Ja</label><br/>
+            <input type="radio" id="grill_nej" name="grill" value="Nej"/>
+            <label for="grill_nej">Nej</label><br/>
             
-            {/*<label>Meddelande</label>
-            <textarea name="message"></textarea>*/}
+            <input type="radio" id="the_day_ja" name="the_day" value="Ja" ref={register({required: true})}/>
+            <label for="the_day_ja">Ja</label><br/>
+            <input type="radio" id="the_day_nej" name="the_day" value="Nej"/>
+            <label for="the_day_nej">Nej</label><br/>
 
+            <input type="radio" id="food_pref_ja" name="food_pref" value="Ja" ref={register({required: true})}/>
+            <label for="food_pref_ja">Ja</label><br/>
+            <input type="radio" id="food_pref_nej" name="food_pref" value="Nej"/>
+            <label for="food_pref_nej">Nej</label><br/>
+
+            <label className={styles.pure_material_textfield_outlined}>
+              <textarea name="food_pref_text" placeholder=" " rows="4" cols="50" ref={register({required: true})}/>
+              <span>test</span>
+            </label>
+            <br/>
+            <label className={styles.pure_material_textfield_outlined}>
+              <textarea name="message" placeholder=" "  rows="4" cols="50" ref={register({required: true})}/>
+              <span>test</span>
+            </label>
             <input type="submit" value="Send"/>
         </form>
         </Card>
