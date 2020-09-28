@@ -67,7 +67,6 @@ export default function Home() {
               </Card>
             </main>
           </div>
-          
         );
       }}
       </Query>

@@ -39,13 +39,13 @@ export default function OSA() {
         console.log(process.env.API_URL);
         console.log(process.env.MAPS_API_KEY);
         console.log(process.env.EMAILJS_SERVICE_ID);
-        console.log(process.env.EMAILJS_TEMPLATE_ID);
+        console.log(process.env.EMAILJS_OSA_TEMPLATE_ID);
         console.log(process.env.EMAILJS_USER_ID);
         sendEmail(data);
     }
     const sendEmail = data => {
         
-    emailjs.send("default_service", process.env.EMAILJS_TEMPLATE_ID, data, process.env.EMAILJS_USER_ID)
+    emailjs.send("default_service", process.env.EMAILJS_OSA_TEMPLATE_ID, data, process.env.EMAILJS_USER_ID)
     .then(function(response) {
        console.log('SUCCESS!', response.status, response.text);
     }, function(error) {
@@ -75,8 +75,28 @@ export default function OSA() {
             <input type="text" placeholder="Efternamn" name="last_name" ref={register({required: true})} />
 
             <input type="text" placeholder="Epost" name="email" ref={register({required: true})} />
+            
+            <br/>
 
-            <input type="text" placeholder="Telefon" name="phone" ref={register({required: true})} />
+            <input type="radio" id="grill_ja" name="grill" value="Ja"/>
+            <label for="grill_ja">Ja</label><br/>
+            <input type="radio" id="grill_nej" name="grill" value="Nej"/>
+            <label for="grill_nej">Nej</label><br/>
+            
+            <input type="radio" id="the_day_ja" name="the_day" value="Ja"/>
+            <label for="the_day_ja">Ja</label><br/>
+            <input type="radio" id="the_day_nej" name="the_day" value="Nej"/>
+            <label for="the_day_nej">Nej</label><br/>
+
+            <input type="radio" id="food_pref_ja" name="food_pref" value="Ja"/>
+            <label for="food_pref_ja">Ja</label><br/>
+            <input type="radio" id="food_pref_nej" name="food_pref" value="Nej"/>
+            <label for="food_pref_nej">Nej</label><br/>
+
+
+            <textarea name="food_pref_text" rows="4" cols="50"></textarea>
+            
+            <textarea name="message" rows="4" cols="50"></textarea>
             
             {/*<label>Meddelande</label>
             <textarea name="message"></textarea>*/}
