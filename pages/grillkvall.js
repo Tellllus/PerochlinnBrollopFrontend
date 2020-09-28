@@ -53,7 +53,7 @@ export default function Home() {
            <main className={styles.wrapper}>
              
              <div className={styles.img}>
-             <HeaderImage className={styles.headerImage} url={"http://localhost:1337" + header_image.url} text={text_on_header_image}/>
+             <HeaderImage className={styles.headerImage} url={process.env.API_URL + header_image.url} text={text_on_header_image}/>
              
              </div>
          
