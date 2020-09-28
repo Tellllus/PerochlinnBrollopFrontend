@@ -3,16 +3,17 @@ import React from 'react';
 import Navigation from '../components/navigation'
 import Card from '../components/card'
 import HeaderImage from '../components/header-image'
-import styles from './css/onskelista.module.css'
+import styles from './css/stjarnor.module.css'
 import gql from 'graphql-tag';
 import Query  from '../components/query';
 import RichText  from '../components/rich-text';
+
 
 export default function Home() {
 
   const query = gql`
   {
-    onskelista {
+    stjarnor {
       header
       header_image{
         url
@@ -42,25 +43,28 @@ export default function Home() {
       </Head>
 
       <Query query={query} id={null}>
-      {({ data: { onskelista: {header, header_image, text_on_header_image, page_content}, navigation: {links} }}) => {
+      {({ data: { stjarnor: {header, header_image, text_on_header_image, page_content}, navigation: {links} }}) => {
+
+          console.log(header_image);
+
         return (
-          <div>
-             <Navigation elements={links}/>
-            <main className={styles.wrapper}>
-              
-              <div className={styles.img}>
-              <HeaderImage className={styles.headerImage} url={process.env.API_URL + header_image.url} text=""/>
-              {text_on_header_image.split('\n').map((item, i) => (<p key={"header-image-text"+i}>{item}</p>))}
-              </div>
-          
-              <Card className={styles.card}>
-                <h1>
-                  {header}
-                </h1>
-                <RichText>{page_content}</RichText>
-              </Card>
-            </main>
-          </div>
+            <div>
+            <Navigation elements={links}/>
+           <main className={styles.wrapper}>
+             
+             <div className={styles.img}>
+             <HeaderImage className={styles.headerImage} url={process.env.API_URL + header_image.url} text={text_on_header_image}/>
+             
+             </div>
+         
+             <Card className={styles.card}>
+               <h1>
+                 {header}
+               </h1>
+               <RichText >{page_content}</RichText>
+             </Card>
+           </main>
+         </div>
           
         );
       }}
