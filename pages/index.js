@@ -53,7 +53,7 @@ export default function Home() {
             <main className={styles.wrapper}>
               
               <div className={styles.img}>
-              <img src={"http://localhost:1337" + header_image.url}></img>
+              <img src={process.env.API_URL  + header_image.url}></img>
               {text_on_header_image.split('\n').map((item, i) => (<p key={"header-image-text"+i}>{item}</p>))}
               </div>
           
