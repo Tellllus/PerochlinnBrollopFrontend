@@ -78,17 +78,17 @@ export default function OSA() {
             
             <br/>
 
-            <input type="radio" id="grill_ja" name="grill" value="Ja"/>
+            <input type="radio" id="grill_ja" name="grill" value="Ja" ref={register({required: true})}/>
             <label for="grill_ja">Ja</label><br/>
             <input type="radio" id="grill_nej" name="grill" value="Nej"/>
             <label for="grill_nej">Nej</label><br/>
             
-            <input type="radio" id="the_day_ja" name="the_day" value="Ja"/>
+            <input type="radio" id="the_day_ja" name="the_day" value="Ja" ref={register({required: true})}/>
             <label for="the_day_ja">Ja</label><br/>
             <input type="radio" id="the_day_nej" name="the_day" value="Nej"/>
             <label for="the_day_nej">Nej</label><br/>
 
-            <input type="radio" id="food_pref_ja" name="food_pref" value="Ja"/>
+            <input type="radio" id="food_pref_ja" name="food_pref" value="Ja" ref={register({required: true})}/>
             <label for="food_pref_ja">Ja</label><br/>
             <input type="radio" id="food_pref_nej" name="food_pref" value="Nej"/>
             <label for="food_pref_nej">Nej</label><br/>
