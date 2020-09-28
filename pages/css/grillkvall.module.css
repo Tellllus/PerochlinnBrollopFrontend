@@ -1,0 +1,39 @@
+.wrapper {
+    max-width: 80%;
+    margin: 1em auto;
+    color: var(--color-text-dark);
+}
+
+.headerImage {
+    position: relative;
+    height: 50%;
+    z-index: -1;
+}
+
+.headerImage p {
+    bottom: 0em;
+    font-size: 2em;
+    font-weight: 200;
+}
+
+.card{
+    position: relative;
+    padding-top: 4em;
+    margin-top: 1.5em;
+    height: 400px;
+}
+
+.card p{
+    padding: 0 7%;
+    z-index: -1;
+    text-align: left;
+}
+
+.card h1{
+    text-align: center;
+}
+
+.card iframe{
+    margin-top: 1.5em;
+    margin-bottom: 2em;
+}

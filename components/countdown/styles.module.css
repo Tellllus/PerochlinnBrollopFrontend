@@ -1,0 +1,36 @@
+
+.counter{
+    font-family: sans-serif;
+    font-weight: 700;
+    text-align: center;
+    font-size: 50px;
+    margin: 0 auto;
+    position: relative;
+    display: block;
+}
+
+.labels{
+    position: relative;
+    font-size: 0.26em;
+}
+
+.labels span{
+    position: relative;
+
+}
+
+.labels span:nth-child(1){
+ left: -9px;   
+}
+
+.labels span:nth-child(2){
+    left: 19px;
+}
+
+.labels span:nth-child(3){
+    left: 28px;
+}
+
+.labels span:nth-child(4){
+    left: 34px;
+}

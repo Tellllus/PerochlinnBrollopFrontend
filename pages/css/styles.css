@@ -1,0 +1,12 @@
+html{
+    --color-background: rgba(191,207,222,0.62);
+    --color-text-light: #fff;
+    --color-text-dark: #292929;
+    --color-text-gold: #D5B335;
+    --color-text-blue: #194575; 
+}
+
+body {
+    background-color: var(--color-background);
+    font-family: 'Raleway', sans-serif;
+    }
