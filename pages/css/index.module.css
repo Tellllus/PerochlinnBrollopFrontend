@@ -13,10 +13,12 @@
 .img{
     position: relative;
     z-index: -1;
+    
 }
 
 .img img{
     width: 900px;
+    max-width: 100%;
 }
 
 .img p {
