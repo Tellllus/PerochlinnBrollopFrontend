@@ -45,7 +45,7 @@ export default function OSA() {
     }
     const sendEmail = data => {
         
-    emailjs.send("default_service", process.env.EMAILJS_OSA_TEMPLATE_ID, data, process.env.EMAILJS_USER_ID)
+    emailjs.send("default_service", "osa", data, process.env.EMAILJS_USER_ID)
     .then(function(response) {
        console.log('SUCCESS!', response.status, response.text);
     }, function(error) {
