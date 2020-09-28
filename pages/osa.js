@@ -38,7 +38,7 @@ export default function OSA() {
         console.log(process.env);
         console.log(process.env.API_URL);
         console.log(process.env.MAPS_API_KEY);
-        console.log(process.env.EMAILJS_SERVICE_ID);
+        console.log(process.env.EMAILJS_TOKEN);
         console.log(process.env.EMAILJS_OSA_TEMPLATE_ID);
         console.log(process.env.EMAILJS_USER_ID);
         sendEmail(data);
