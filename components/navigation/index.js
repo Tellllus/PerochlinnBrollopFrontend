@@ -48,7 +48,11 @@ toggleHamburger() {
   render() {
     return (
       <div>
-        <button className={styles.toggleButton} onClick={this.toggleHamburger}>clikc me</button>
+
+    <div className={[styles.hamburger, this.state.mobileMenu ? styles.hamburgerActive : ""].join(" ")} onClick={this.toggleHamburger}>  
+        <span className={styles.hamburgerIcon}/>
+    </div>
+
         <nav className={[styles.nav, this.state.scrollingLock ? styles.sticky : "", this.state.mobileMenu ? styles.active : ""].join(" ")} >
          <ul className={styles.ul}>
             {this.props.elements.map(element => (
