@@ -10,10 +10,12 @@ class Navigation extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      scrollingLock: false
+      scrollingLock: false,
+      mobileMenu: false
     };
     // example how to bind object in React ES6
-    this.handleScroll = this.handleScroll.bind(this)
+    this.handleScroll = this.handleScroll.bind(this);
+    this.toggleHamburger = this.toggleHamburger.bind(this);
   }
 
 componentDidMount(){
@@ -25,7 +27,6 @@ componentWillUnmount() {
 }
 
 handleScroll() {
-
   let lockPoint = 50;
   if (window.scrollY > lockPoint && !this.state.scrollingLock ){
     this.setState({
@@ -36,12 +37,19 @@ handleScroll() {
       scrollingLock: false
     });
   }
-
 }
+
+toggleHamburger() {
+  this.setState({
+    mobileMenu: !this.state.mobileMenu
+  });
+}
+
   render() {
     return (
       <div>
-        <nav className={[styles.nav, this.state.scrollingLock ? styles.sticky : ""].join(" ")} >
+        <button className={styles.toggleButton} onClick={this.toggleHamburger}>clikc me</button>
+        <nav className={[styles.nav, this.state.scrollingLock ? styles.sticky : "", this.state.mobileMenu ? styles.active : ""].join(" ")} >
          <ul className={styles.ul}>
             {this.props.elements.map(element => (
                 <li className={styles.li}>
