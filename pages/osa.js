@@ -44,23 +44,12 @@ export default function OSA() {
 
     const onPrefchange = data => {
       if(data.target.value == "Ja"){
-        console.log(document.getElementById('food_pref_text'))
         document.getElementById('food_pref_text').hidden = false;
       }
       else{
         document.getElementById('food_pref_text').hidden = true;
       }
     }
-
-    let pref_toggle = true;
-
-    let pref_style = {
-      display: 'none'
-    };
-
-    let pref_style_show = {
-      display: 'none'
-    };
 
     const sendEmail = data => {
         
