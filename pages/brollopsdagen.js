@@ -7,6 +7,7 @@ import styles from './css/brollopsdagen.module.css'
 import gql from 'graphql-tag';
 import Query  from '../components/query';
 import RichText  from '../components/rich-text';
+import InfoBox from '../components/info-box';
 
 export default function Home() {
 
@@ -71,7 +72,7 @@ export default function Home() {
       </Head>
 
       <Query query={query} id={null}>
-      {({ data: {brollopsdagen: {header, church_image, villa_image, car_image, clothes_image, kids_image, photo_image,  church_header, church_text, villa_header, villa_text,
+      {({ data: {brollopsdagen: {header, church_image, villa_image, car_image, clothes_image, kids_image, photo_image, church_header, church_text, villa_header, villa_text,
       car_header, car_text, clothes_header, clothes_text, kids_header, kids_text, photo_header, photo_text, hashtag_header}, navigation: {links} }}) => {
         return (
           <div>
@@ -82,9 +83,15 @@ export default function Home() {
                 <h1>
                   {header}
                 </h1>
-              <div className={styles.img}>
-              <SmallImage className={styles.smallImage} url={process.env.API_URL + church_image.url}/>
+              
+              <div>
+              <InfoBox url={process.env.API_URL + church_image.url} header ={church_header} text={church_text}/>
+              <InfoBox className={styles.right} url={process.env.API_URL + car_image.url} header ={car_header} text={car_text}/>
               </div>
+              <div>
+              <InfoBox  url={process.env.API_URL + villa_image.url} header ={villa_header} text={villa_text}/>
+              </div>
+              
               </Card>
             </main>
           </div>
