@@ -2,9 +2,9 @@
     --pure-material-safari-helper1: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
     position: relative;
     display: inline-block;
-    padding-top: 16px;
+    padding-top: 20px;
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 2;
     overflow: hidden;
 }
 
@@ -34,17 +34,20 @@
 .pure_material_textfield_outlined > input + span,
 .pure_material_textfield_outlined > textarea + span {
     position: absolute;
-    top: 0;
+    width: 96.5%;
+    top:14px;
     left: 0;
     display: flex;
     border-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.6);
-    width: 100%;
     max-height: 100%;
     color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.6);
     font-size: 75%;
     line-height: 15px;
     cursor: text;
     transition: color 0.2s, font-size 0.2s, line-height 0.2s;
+}
+.pure_material_textfield_outlined > input + span{
+    width: 190px !important; 
 }
 
 /* Corners */
@@ -190,7 +193,6 @@
 }
 
 .card {
-
     text-align: center;
 }
 
@@ -203,12 +205,6 @@
     padding-right: 1em;
 }
 
-.pure_material_textfield_outlined_ja{
+.radio{
     margin: 3px 4px 0px 0px;
-}
-
-.grill_ja{
-
-    margin: 3px 6px 0px 0px;
-    
 }
