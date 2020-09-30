@@ -28,6 +28,7 @@ export default function OSA() {
   }
 `
 
+
     const { register, handleSubmit, errors } = useForm();
 
     const onSubmit = data => {
@@ -40,6 +41,27 @@ export default function OSA() {
         console.log(process.env.EMAILJS_USER_ID);
         sendEmail(data);
     }
+
+    const onPrefchange = data => {
+      if(data.target.value == "Ja"){
+        console.log(document.getElementById('food_pref_text'))
+        document.getElementById('food_pref_text').hidden = false;
+      }
+      else{
+        document.getElementById('food_pref_text').hidden = true;
+      }
+    }
+
+    let pref_toggle = true;
+
+    let pref_style = {
+      display: 'none'
+    };
+
+    let pref_style_show = {
+      display: 'none'
+    };
+
     const sendEmail = data => {
         
     emailjs.send("default_service", "osa", data, process.env.EMAILJS_USER_ID)
@@ -93,25 +115,25 @@ export default function OSA() {
         <br/>
           
             <h4>Jag kommer delta på grillkväll</h4>
-            <input type="radio" className={styles.pure_material_textfield_outlined_ja} id="grill_ja" name="grill" value="Ja" ref={register({required: true})}/>
+            <input type="radio" className={styles.radio} id="grill_ja" name="grill" value="Ja" ref={register({required: true})}/>
             <label for="grill_ja">  Ja</label><br/>
             <input type="radio" id="grill_nej" name="grill" value="Nej"/>
             <label for="grill_nej">Nej</label><br/>
             
             <h4>Jag kommer delta på bröllopet</h4>
-            <input type="radio" id="the_day_ja" name="the_day" value="Ja" ref={register({required: true})}/>
+            <input type="radio" id="the_day_ja" className={styles.radio} name="the_day" value="Ja" ref={register({required: true})}/>
             <label for="the_day_ja">Ja </label><br/>
             <input type="radio" id="the_day_nej" name="the_day" value="Nej"/>
             <label for="the_day_nej">Nej</label><br/>
 
             <h4>Specialkost/allergier</h4>
-            <input type="radio" id="food_pref_ja" name="food_pref" value="Ja" ref={register({required: true})}/>
+            <input type="radio" id="food_pref_ja" className={styles.radio} name="food_pref" value="Ja" onChange={onPrefchange} ref={register({required: true})}/>
             <label for="food_pref_ja">Ja </label><br/>
-            <input type="radio" id="food_pref_nej" name="food_pref" value="Nej"/>
+            <input type="radio" id="food_pref_nej" name="food_pref" value="Nej" onChange={onPrefchange}/>
             <label for="food_pref_nej">Nej</label><br/>
 
-            <label className={styles.pure_material_textfield_outlined}>
-              <textarea name="food_pref_text" placeholder=" " rows="4" cols="50" ref={register({required: true})}/>
+            <label className={styles.pure_material_textfield_outlined} >
+              <textarea id="food_pref_text" name="food_pref_text" placeholder=" " rows="4" cols="50" ref={register({required: true})} hidden/>
               <span>Specifiera din Specialkost eller allergi</span>
             </label>
             <br/>
@@ -120,7 +142,8 @@ export default function OSA() {
               <textarea name="message" placeholder=" "  rows="4" cols="50" ref={register({required: true})}/>
               <span>Meddelande</span>
             </label>
-            <input type="submit" value="Send"/>
+            <br/>
+            <input type="submit" value="Skicka OSA"/>
         </form>
         </Card>
         </main>
