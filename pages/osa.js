@@ -91,30 +91,34 @@ export default function OSA() {
             <span>Epost</span>
         </label>    
         <br/>
-        
-            <input type="radio" id="grill_ja" name="grill" value="Ja" ref={register({required: true})}/>
-            <label for="grill_ja">Ja</label><br/>
+          
+            <h4>Jag kommer delta på grillkväll</h4>
+            <input type="radio" className={styles.pure_material_textfield_outlined_ja} id="grill_ja" name="grill" value="Ja" ref={register({required: true})}/>
+            <label for="grill_ja">  Ja</label><br/>
             <input type="radio" id="grill_nej" name="grill" value="Nej"/>
             <label for="grill_nej">Nej</label><br/>
             
+            <h4>Jag kommer delta på bröllopet</h4>
             <input type="radio" id="the_day_ja" name="the_day" value="Ja" ref={register({required: true})}/>
-            <label for="the_day_ja">Ja</label><br/>
+            <label for="the_day_ja">Ja </label><br/>
             <input type="radio" id="the_day_nej" name="the_day" value="Nej"/>
             <label for="the_day_nej">Nej</label><br/>
 
+            <h4>Specialkost/allergier</h4>
             <input type="radio" id="food_pref_ja" name="food_pref" value="Ja" ref={register({required: true})}/>
-            <label for="food_pref_ja">Ja</label><br/>
+            <label for="food_pref_ja">Ja </label><br/>
             <input type="radio" id="food_pref_nej" name="food_pref" value="Nej"/>
             <label for="food_pref_nej">Nej</label><br/>
 
             <label className={styles.pure_material_textfield_outlined}>
               <textarea name="food_pref_text" placeholder=" " rows="4" cols="50" ref={register({required: true})}/>
-              <span>test</span>
+              <span>Specifiera din Specialkost eller allergi</span>
             </label>
             <br/>
+
             <label className={styles.pure_material_textfield_outlined}>
               <textarea name="message" placeholder=" "  rows="4" cols="50" ref={register({required: true})}/>
-              <span>test</span>
+              <span>Meddelande</span>
             </label>
             <input type="submit" value="Send"/>
         </form>
