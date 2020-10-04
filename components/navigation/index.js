@@ -10,7 +10,7 @@ class Navigation extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      scrollingLock: false,
+      scrollingLock: true,
       mobileMenu: false
     };
     // example how to bind object in React ES6
@@ -27,7 +27,7 @@ componentWillUnmount() {
 }
 
 handleScroll() {
-  let lockPoint = 50;
+  let lockPoint = 0;
   if (window.scrollY > lockPoint && !this.state.scrollingLock ){
     this.setState({
       scrollingLock: true
