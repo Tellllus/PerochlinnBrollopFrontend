@@ -15,40 +15,15 @@ export default function Home() {
   {
     brollopsdagen {
       header
-      church_image{
-        url
+      infobox{
+        ... on ComponentBrollopBrollopInfoBox {
+          header
+          image{
+            url
+          }
+          text
+        }
       }
-      villa_image{
-        url
-      }
-      car_image{
-        url
-      }
-      clothes_image{
-        url
-      }
-      kids_image{
-        url
-      }
-      photo_image{
-        url
-      }
-      hashtag_image{
-        url
-      }
-      church_header
-      church_text
-      villa_header
-      villa_text
-      car_header
-      car_text
-      clothes_header
-      clothes_text
-      kids_header
-      kids_text
-      photo_header
-      photo_text
-      hashtag_header
     }
     navigation {
       links{
@@ -60,6 +35,17 @@ export default function Home() {
     }
   }
 `
+
+ const chunk = (array, size) => {
+  return array.reduce((chunks, item, i) => {
+    if (i % size === 0) {
+      chunks.push([item]);
+    } else {  
+      chunks[chunks.length - 1].push(item);
+    }
+    return chunks;
+  }, []);
+}
   return (
    
   
@@ -72,8 +58,11 @@ export default function Home() {
       </Head>
 
       <Query query={query} id={null}>
-      {({ data: {brollopsdagen: {header, church_image, villa_image, car_image, clothes_image, kids_image, photo_image, church_header, church_text, villa_header, villa_text,
-      car_header, car_text, clothes_header, clothes_text, kids_header, kids_text, photo_header, photo_text, hashtag_header}, navigation: {links} }}) => {
+      {({ data: {brollopsdagen: {header, infobox}, navigation: {links} }}) => {
+        
+        {
+          console.log(chunk(infobox,2))
+        }
         return (
           <div>
              <Navigation elements={links}/>
@@ -83,20 +72,20 @@ export default function Home() {
                 <h1>
                   {header}
                 </h1>
-              
-              <div className={styles.row}>
-              <InfoBox className={styles.left} url={process.env.API_URL + church_image.url} header ={church_header} text={church_text}/>
-              <InfoBox className={styles.right} url={process.env.API_URL + villa_image.url} header ={villa_header} text={villa_text}/>
-              </div>
-              <div className={styles.row}>
-              <InfoBox  className={styles.left} url={process.env.API_URL + car_image.url} header ={car_header} text={car_text}/>
-              <InfoBox className={styles.right} url={process.env.API_URL + clothes_image.url} header ={clothes_header} text={clothes_text}/>
-              </div>
-              <div className={styles.row}>
-              <InfoBox  className={styles.left} url={process.env.API_URL + kids_image.url} header ={kids_header} text={kids_text}/>
-              <InfoBox className={styles.right} url={process.env.API_URL + clothes_image.url} header ={clothes_header} text={clothes_text}/>
-              </div>
-              
+
+                <div className={styles.infoboxes}>
+                  {chunk(infobox,2).map( (element) => {
+                      let first = element[0]
+                      let second = element[1]
+                      return(
+                        <div className={styles.row}>
+                          
+                          <InfoBox className={styles.left} url={process.env.API_URL + first.image.url} header ={first.header} text={first.text}/> 
+                          {second ? <InfoBox className={styles.right} url={process.env.API_URL + second.image.url} header ={second.header} text={second.text}/> : ""} 
+                        </div>
+                      ) 
+                  })}
+                </div>
               </Card>
             </main>
           </div>
