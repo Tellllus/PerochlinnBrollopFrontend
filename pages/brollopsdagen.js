@@ -79,7 +79,6 @@ export default function Home() {
                       let second = element[1]
                       return(
                         <div className={styles.row}>
-                          
                           <InfoBox className={styles.left} url={process.env.API_URL + first.image.url} header ={first.header} text={first.text}/> 
                           {second ? <InfoBox className={styles.right} url={process.env.API_URL + second.image.url} header ={second.header} text={second.text}/> : ""} 
                         </div>
