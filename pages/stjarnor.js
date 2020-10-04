@@ -18,6 +18,9 @@ export default function Home() {
       header_image{
         url
       }
+      image2{
+        url
+      }
       text_on_header_image
       page_content
     }
@@ -43,7 +46,7 @@ export default function Home() {
       </Head>
 
       <Query query={query} id={null}>
-      {({ data: { stjarnor: {header, header_image, text_on_header_image, page_content}, navigation: {links} }}) => {
+      {({ data: { stjarnor: {header, header_image,image2, text_on_header_image, page_content}, navigation: {links} }}) => {
 
           console.log(header_image);
 
@@ -53,8 +56,8 @@ export default function Home() {
            <main className={styles.wrapper}>
              
              <div className={styles.img}>
-             <HeaderImage className={styles.headerImage} url={process.env.API_URL + header_image.url} text={text_on_header_image}/>
-             
+               <img src={header_image.url}/>
+               <img src={image2.url}/>             
              </div>
          
              <Card className={styles.card}>

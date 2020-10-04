@@ -85,11 +85,16 @@ export default function Home() {
                 </h1>
               
               <div>
-              <InfoBox url={process.env.API_URL + church_image.url} header ={church_header} text={church_text}/>
-              <InfoBox className={styles.right} url={process.env.API_URL + car_image.url} header ={car_header} text={car_text}/>
+              <InfoBox  className={styles.left} url={process.env.API_URL + church_image.url} header ={church_header} text={church_text}/>
+              <InfoBox className={styles.right} url={process.env.API_URL + villa_image.url} header ={villa_header} text={villa_text}/>
               </div>
               <div>
-              <InfoBox  url={process.env.API_URL + villa_image.url} header ={villa_header} text={villa_text}/>
+              <InfoBox  className={styles.left} url={process.env.API_URL + car_image.url} header ={car_header} text={car_text}/>
+              <InfoBox className={styles.right.clothes} url={process.env.API_URL + clothes_image.url} header ={clothes_header} text={clothes_text}/>
+              </div>
+              <div>
+              <InfoBox  className={styles.left} url={process.env.API_URL + kids_image.url} header ={kids_header} text={kids_text}/>
+              <InfoBox className={styles.right.clothes} url={process.env.API_URL + clothes_image.url} header ={clothes_header} text={clothes_text}/>
               </div>
               
               </Card>
