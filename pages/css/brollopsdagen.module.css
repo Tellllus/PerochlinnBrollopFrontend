@@ -1,26 +1,23 @@
 .left{
-    
-    padding-left: 12em;
+   float: inherit; 
 }
 
 .right{
-   float: right;
-    padding-right: 12em;
-  
-    
+   float: right; 
 }
 
-.right.clothes{
-    float: right;
-    
-    padding-right: 12em;
-    
+.row{
+    margin: 0 10%;
+    overflow: hidden;
 }
 
 .wrapper {
     max-width: 80%;
     margin: 1em auto;
-    display: inlene block;
     color: var(--color-text-dark);
+}
+
+.wrapper h1{
+    text-align: center;
 }
 
