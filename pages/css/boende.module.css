@@ -12,15 +12,15 @@
 }
 
 .headerImage p {
-    font-size: 2em;
-    font-weight: 200;
-    left: 4%;
-    bottom: 0%;
+    font-size: 2em !important;
+    font-weight: 200 !important;
+    left: 4% !important;
+    bottom: 0% !important;
 }
 
 @media screen and (max-width: 1010px) {
     .headerImage p {
-        bottom: -5%;
+        bottom: -5% !important;
     } 
 }
 
