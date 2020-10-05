@@ -56,8 +56,8 @@ export default function Home() {
            <main className={styles.wrapper}>
              
              <div className={styles.img}>
-               <img src={header_image.url}/>
-               <img src={image2.url}/>             
+               <img src={process.env.API_URL + header_image.url}/>
+               <img src={process.env.API_URL+image2.url}/>             
              </div>
          
              <Card className={styles.card}>
