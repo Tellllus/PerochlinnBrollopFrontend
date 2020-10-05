@@ -210,3 +210,30 @@
 .radio{
     margin: 3px 4px 0px 0px;
 }
+
+.imgLeft{
+    display: block;
+    position: absolute;
+    left: 10px;
+    width: 28%;
+    
+}
+.imgRight{
+    display: block;
+    position: absolute;
+    right: 10px;
+    width: 28%;
+    
+}
+
+@media screen and (max-width: 1272px){
+
+    .imgLeft{
+        display: none;
+    }
+
+    .imgRight{
+        display: none;
+    }
+
+}

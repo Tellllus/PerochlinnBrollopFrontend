@@ -14,6 +14,9 @@ export default function OSA() {
     const query = gql`
   {
     osa {
+      image{
+        url
+      }
       header
       page_content
     }
@@ -70,20 +73,24 @@ export default function OSA() {
       </Head>
     
     <Query query={query} id={null}>
-    {({ data: { osa: {header, page_content}, navigation: {links}} }) => {
+    {({ data: { osa: {header, page_content, image}, navigation: {links}} }) => {
         return (
         <div>
             <Navigation elements={links}/>
         <main className={styles.wrapper}>
             
         <Card className={styles.card}>
+
+       
         <h1>
           {header}
         </h1>
+        <img className={styles.imgLeft} src={process.env.API_URL + image.url}/>
+        <img className={styles.imgRight} src={process.env.API_URL + image.url}/>
         <RichText>
           {page_content}
         </RichText>
-
+     
         <form onSubmit={handleSubmit(onSubmit)}>
 
         <label className={styles.pure_material_textfield_outlined}>

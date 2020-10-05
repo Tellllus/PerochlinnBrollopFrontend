@@ -38,7 +38,7 @@ export default function Home() {
       </Head>
 
       <Query query={query} id={null}>
-      {({ data: { boende: {header, page_content}, navigation: {links} }}) => {
+      {({ data: { bilder: {header, page_content}, navigation: {links} }}) => {
         return (
           <div>
              <Navigation elements={links}/>
