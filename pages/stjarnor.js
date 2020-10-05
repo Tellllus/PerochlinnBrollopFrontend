@@ -15,13 +15,9 @@ export default function Home() {
   {
     stjarnor {
       header
-      header_image{
+      header_images{
         url
       }
-      image2{
-        url
-      }
-      text_on_header_image
       page_content
     }
     navigation {
@@ -46,18 +42,19 @@ export default function Home() {
       </Head>
 
       <Query query={query} id={null}>
-      {({ data: { stjarnor: {header, header_image,image2, text_on_header_image, page_content}, navigation: {links} }}) => {
-
-          console.log(header_image);
+      {({ data: { stjarnor: {header, header_images, page_content}, navigation: {links} }}) => {
 
         return (
             <div>
             <Navigation elements={links}/>
            <main className={styles.wrapper}>
              
-             <div className={styles.img}>
-               <img src={process.env.API_URL + header_image.url}/>
-               <img src={process.env.API_URL + image2.url}/>             
+             <div className={styles.imageContainer}>
+               {
+                 header_images.map(image => (
+                  <img src={process.env.API_URL + image.url}/>    
+                 ))
+               }          
              </div>
          
              <Card className={styles.card}>
