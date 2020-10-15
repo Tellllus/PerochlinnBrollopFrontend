@@ -9,7 +9,7 @@ import Query  from '../components/query';
 import RichText  from '../components/rich-text';
 
 export default function Home() {
-
+  
   const query = gql`
   {
     boende {
@@ -30,6 +30,7 @@ export default function Home() {
     }
   }
 `
+const a = "https://www.google.com/maps/embed/v1/place?key=" + process.env.MAPS_API_KEY + "&q=Stenungsbaden+Yacht+Club";
   return (
    
   
@@ -57,6 +58,9 @@ export default function Home() {
                   {header}
                 </h1>
                 <RichText >{page_content}</RichText>
+
+                <iframe src={a} className={styles.map}/>
+
               </Card>
             </main>
           </div>

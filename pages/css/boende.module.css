@@ -34,7 +34,10 @@
     text-align: center;
 }
 
-.card iframe{
+.map{
+    width: 100%;
+    border: none;
+    height: 400px;
+    position: relative;
     margin-top: 1.5em;
-    margin-bottom: 2em;
 }
