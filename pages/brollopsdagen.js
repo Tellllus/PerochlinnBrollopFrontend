@@ -15,6 +15,7 @@ export default function Home() {
   {
     brollopsdagen {
       header
+      header_text
       infobox{
         ... on ComponentBrollopBrollopInfoBox {
           header
@@ -58,7 +59,7 @@ export default function Home() {
       </Head>
 
       <Query query={query} id={null}>
-      {({ data: {brollopsdagen: {header, infobox}, navigation: {links} }}) => {
+      {({ data: {brollopsdagen: {header, header_text, infobox}, navigation: {links} }}) => {
         
         {
           console.log(chunk(infobox,2))
@@ -72,6 +73,8 @@ export default function Home() {
                 <h1>
                   {header}
                 </h1>
+
+                <p>{header_text}</p>
 
                 <div className={styles.infoboxes}>
                   {chunk(infobox,2).map( (element) => {

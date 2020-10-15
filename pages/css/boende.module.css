@@ -31,7 +31,7 @@
 .card p{
     padding: 0 7%;
     z-index: -1;
-    text-align: center;
+    text-align: left;
 }
 
 .map{
