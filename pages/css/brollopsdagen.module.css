@@ -21,3 +21,15 @@
     text-align: center;
 }
 
+
+@media screen and (max-width: 1272px){
+    .left{
+        text-align: center;
+       
+    }
+
+    .right{
+        text-align: center;
+        
+    }
+}

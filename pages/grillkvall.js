@@ -57,7 +57,7 @@ export default function Home() {
              
              </div>
          
-             <Card className={styles.card}>
+              s.card}>
                <h1>
                  {header}
                </h1>
