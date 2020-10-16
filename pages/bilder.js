@@ -15,6 +15,9 @@ export default function Home() {
     bilder {
       header
       page_content
+      pictures{
+       url
+      }
     }
     navigation {
       links{
@@ -26,6 +29,16 @@ export default function Home() {
     }
   }
 `
+const chunk = (array, size) => {
+  return array.reduce((chunks, item, i) => {
+    if (i % size === 0) {
+      chunks.push([item]);
+    } else {  
+      chunks[chunks.length - 1].push(item);
+    }
+    return chunks;
+  }, []);
+}
   return (
    
   
@@ -38,7 +51,7 @@ export default function Home() {
       </Head>
 
       <Query query={query} id={null}>
-      {({ data: { bilder: {header, page_content}, navigation: {links} }}) => {
+      {({ data: { bilder: {header, page_content,pictures}, navigation: {links} }}) => {
         return (
           <div>
              <Navigation elements={links}/>
@@ -49,6 +62,15 @@ export default function Home() {
                   {header}
                 </h1>
                 <RichText >{page_content}</RichText>
+                {console.log(pictures)}
+
+                {pictures.map( (element) => {
+                      return(
+                        <div className={styles.row}>
+                          <img src= {process.env.API_URL + element.url}/>
+                        </div>
+                      ) 
+                  })}
               </Card>
             </main>
           </div>

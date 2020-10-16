@@ -35,17 +35,21 @@ padding: 0 15%
 
 .card h1{
     text-align: center;
-    font-size: 1.5em;
-    margin-left: 7%;
+    font-size: 2.2em;
+    font-family: 'Satisfy';
+
 }
 
 .card p{
     z-index: -1;
     text-align: center;
     padding: 0 7%;
+    font-family: 'Satisfy';
+    font-size: 1.2em;
 }
 
-.card iframe{
-    margin-top: 1.5em;
-    margin-bottom: 2em;
+.card{
+
+    padding: 4em 6em 4em 6em;
+    
 }
