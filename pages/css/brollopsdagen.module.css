@@ -25,6 +25,30 @@
     text-align: center;
 }
 
+.hashtag{
+    width: 30%;
+    display: block;
+    margin: 0 auto;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+.hashtag img{
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
+    display: block;
+}
+
+.hashtag h3{
+    text-align: center;
+}
+
+.hashtag p{
+   text-align: center;
+}
+
 
 @media screen and (max-width: 1272px){
     .left{

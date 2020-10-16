@@ -25,6 +25,11 @@ export default function Home() {
           text
         }
       }
+      hashtag_img{
+        url
+      }
+      hashtag_header
+      hashtag_text
     }
     navigation {
       links{
@@ -59,7 +64,7 @@ export default function Home() {
       </Head>
 
       <Query query={query} id={null}>
-      {({ data: {brollopsdagen: {header, header_text, infobox}, navigation: {links} }}) => {
+      {({ data: {brollopsdagen: {header, header_text, infobox, hashtag_img, hashtag_header, hashtag_text}, navigation: {links} }}) => {
         
         {
           console.log(chunk(infobox,2))
@@ -87,6 +92,12 @@ export default function Home() {
                         </div>
                       ) 
                   })}
+                </div>
+
+              <div className={styles.hashtag}>
+                <img src={process.env.API_URL + hashtag_img.url}/> 
+                <h3>{hashtag_header}</h3>
+                <RichText>{hashtag_text}</RichText>
                 </div>
               </Card>
             </main>
