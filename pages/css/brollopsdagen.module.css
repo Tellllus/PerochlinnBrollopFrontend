@@ -1,5 +1,5 @@
 .left{
-   float: inherit; 
+   float: none; 
 }
 
 .right{
@@ -50,14 +50,11 @@
 }
 
 
-@media screen and (max-width: 1272px){
-    .left{
-        text-align: center;
-       
+@media screen and (max-width: 1150px) {
+    .left, .right {
+        float: none;
+        display: block !important;
+        margin: 0 auto;
+        width: 100% !important;
     }
-
-    .right{
-        text-align: center;
-        
-    }   
 }
