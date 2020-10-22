@@ -50,14 +50,16 @@
 }
 
 
-@media screen and (max-width: 1272px){
+@media screen and (max-width: 1494px){
     .left{
-        text-align: center;
+        display: block;
+    margin: 0 auto;
        
     }
 
     .right{
-        text-align: center;
+        display: block;
+        margin: 0 auto;
         
     }   
 }
