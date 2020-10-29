@@ -70,9 +70,9 @@ export default function OSA() {
        document.querySelectorAll('textarea').forEach(element => {
         element.value = "";
       });
-      
+
       document.getElementById('food_pref_text').hidden = true;
-       alert("Svar skickat. Du kommer få ett bekräftelsemail av oss.");
+       alert("Svar skickat. Du kommer få ett bekräftelsemail av oss inom en vecka.");
     }, function(error) {
        console.log('FAILED...', error);
        alert("Något gick fel, testa igen om en timme");
