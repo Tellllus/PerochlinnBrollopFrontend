@@ -8,6 +8,7 @@ import styles from './css/osa.module.css'
 import gql from 'graphql-tag';
 import Query  from '../components/query';
 import RichText  from '../components/rich-text';
+import { reset } from 'aphrodite';
 
 export default function OSA() {
 
@@ -59,8 +60,11 @@ export default function OSA() {
     emailjs.send("default_service", "osa", data, process.env.EMAILJS_USER_ID)
     .then(function(response) {
        console.log('SUCCESS!', response.status, response.text);
+       reset();
+       alert("Svar skickat. Du kommer få ett bekräftelse mail av oss.");
     }, function(error) {
        console.log('FAILED...', error);
+       alert("Något gick fel, testa igen om en timme");
     });
     }
 
@@ -129,7 +133,7 @@ export default function OSA() {
             <label for="food_pref_nej">Nej</label><br/>
 
             <label className={styles.pure_material_textfield_outlined} >
-              <textarea id="food_pref_text" name="food_pref_text" placeholder=" " rows="4" cols="50" ref={register({required: true})} hidden/>
+              <textarea id="food_pref_text" name="food_pref_text" placeholder=" " rows="4" cols="50" ref={register({required: false})} hidden/>
               <span>Specifiera din Specialkost eller allergi</span>
             </label>
             <br/>
