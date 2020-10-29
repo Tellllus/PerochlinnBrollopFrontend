@@ -36,14 +36,15 @@ export default function OSA() {
     const { register, handleSubmit, errors } = useForm();
 
     const onSubmit = data => {
-        console.log(data);
-        console.log(process.env);
-        console.log(process.env.API_URL);
-        console.log(process.env.MAPS_API_KEY);
-        console.log(process.env.EMAILJS_TOKEN);
-        console.log(process.env.EMAILJS_OSA_TEMPLATE_ID);
-        console.log(process.env.EMAILJS_USER_ID);
-        sendEmail(data);
+      console.log(data);
+      let radios = document.querySelectorAll('input[type="radio"]:checked');
+      if(radios.length < 3)
+      {
+        alert("Hela formuläret är inte ifyllt. Kontrollera formuläret och klicka skicka igen.")
+      }
+      else{
+        sendEmail(data);      
+      } 
     }
 
     const onPrefchange = data => {
@@ -56,12 +57,14 @@ export default function OSA() {
     }
 
     const sendEmail = data => {
-        
+
+
+      
     emailjs.send("default_service", "osa", data, process.env.EMAILJS_USER_ID)
     .then(function(response) {
        console.log('SUCCESS!', response.status, response.text);
        reset();
-       alert("Svar skickat. Du kommer få ett bekräftelse mail av oss.");
+       alert("Svar skickat. Du kommer få ett bekräftelsemail av oss.");
     }, function(error) {
        console.log('FAILED...', error);
        alert("Något gick fel, testa igen om en timme");
@@ -115,19 +118,19 @@ export default function OSA() {
         <br/>
           
             <h4>Jag kommer delta på grillkväll</h4>
-            <input type="radio" className={styles.radio} id="grill_ja" name="grill" value="Ja" ref={register({required: true})}/>
+            <input type="radio" className={styles.radio} id="grill_ja" name="grill" value="Ja"/>
             <label for="grill_ja">  Ja</label><br/>
             <input type="radio" id="grill_nej" name="grill" value="Nej"/>
             <label for="grill_nej">Nej</label><br/>
             
             <h4>Jag kommer delta på bröllopet</h4>
-            <input type="radio" id="the_day_ja" className={styles.radio} name="the_day" value="Ja" ref={register({required: true})}/>
+            <input type="radio" id="the_day_ja" className={styles.radio} name="the_day" value="Ja"/>
             <label for="the_day_ja">Ja </label><br/>
             <input type="radio" id="the_day_nej" name="the_day" value="Nej"/>
             <label for="the_day_nej">Nej</label><br/>
 
             <h4>Specialkost/allergier</h4>
-            <input type="radio" id="food_pref_ja" className={styles.radio} name="food_pref" value="Ja" onChange={onPrefchange} ref={register({required: true})}/>
+            <input type="radio" id="food_pref_ja" className={styles.radio} name="food_pref" value="Ja" onChange={onPrefchange}/>
             <label for="food_pref_ja">Ja </label><br/>
             <input type="radio" id="food_pref_nej" name="food_pref" value="Nej" onChange={onPrefchange}/>
             <label for="food_pref_nej">Nej</label><br/>
