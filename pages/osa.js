@@ -8,7 +8,6 @@ import styles from './css/osa.module.css'
 import gql from 'graphql-tag';
 import Query  from '../components/query';
 import RichText  from '../components/rich-text';
-import { reset } from 'aphrodite';
 
 export default function OSA() {
 
@@ -37,8 +36,8 @@ export default function OSA() {
 
     const onSubmit = data => {
       console.log(data);
-      let radios = document.querySelectorAll('input[type="radio"]:checked');
-      if(radios.length < 3)
+      
+      if(!data.grill || !data.the_day || !data.food_pref || (data.food_pref == "Ja" && !data.food_pref_text))
       {
         alert("Hela formuläret är inte ifyllt. Kontrollera formuläret och klicka skicka igen.")
       }
@@ -57,13 +56,22 @@ export default function OSA() {
     }
 
     const sendEmail = data => {
-
-
-      
     emailjs.send("default_service", "osa", data, process.env.EMAILJS_USER_ID)
     .then(function(response) {
        console.log('SUCCESS!', response.status, response.text);
-       reset();
+       document.querySelectorAll('input[type="text"]').forEach(element => {
+         element.value = "";
+       });
+
+       document.querySelectorAll('input[type="radio"]').forEach(element => {
+        element.checked = false;
+      });
+
+       document.querySelectorAll('textarea').forEach(element => {
+        element.value = "";
+      });
+      
+      document.getElementById('food_pref_text').hidden = true;
        alert("Svar skickat. Du kommer få ett bekräftelsemail av oss.");
     }, function(error) {
        console.log('FAILED...', error);
@@ -118,21 +126,21 @@ export default function OSA() {
         <br/>
           
             <h4>Jag kommer delta på grillkväll</h4>
-            <input type="radio" className={styles.radio} id="grill_ja" name="grill" value="Ja"/>
+            <input type="radio" className={styles.radio} id="grill_ja" name="grill" value="Ja" ref={register({required: false})}/>
             <label for="grill_ja">  Ja</label><br/>
-            <input type="radio" id="grill_nej" name="grill" value="Nej"/>
+            <input type="radio" id="grill_nej" name="grill" value="Nej" ref={register({required: false})}/>
             <label for="grill_nej">Nej</label><br/>
             
             <h4>Jag kommer delta på bröllopet</h4>
-            <input type="radio" id="the_day_ja" className={styles.radio} name="the_day" value="Ja"/>
+            <input type="radio" id="the_day_ja" className={styles.radio} name="the_day" value="Ja" ref={register({required: false})}/>
             <label for="the_day_ja">Ja </label><br/>
-            <input type="radio" id="the_day_nej" name="the_day" value="Nej"/>
+            <input type="radio" id="the_day_nej" name="the_day" value="Nej" ref={register({required: false})}/>
             <label for="the_day_nej">Nej</label><br/>
 
             <h4>Specialkost/allergier</h4>
-            <input type="radio" id="food_pref_ja" className={styles.radio} name="food_pref" value="Ja" onChange={onPrefchange}/>
+            <input type="radio" id="food_pref_ja" className={styles.radio} name="food_pref" value="Ja" onChange={onPrefchange} ref={register({required: false})}/>
             <label for="food_pref_ja">Ja </label><br/>
-            <input type="radio" id="food_pref_nej" name="food_pref" value="Nej" onChange={onPrefchange}/>
+            <input type="radio" id="food_pref_nej" name="food_pref" value="Nej" onChange={onPrefchange} ref={register({required: false})}/>
             <label for="food_pref_nej">Nej</label><br/>
 
             <label className={styles.pure_material_textfield_outlined} >
