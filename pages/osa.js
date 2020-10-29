@@ -139,7 +139,7 @@ export default function OSA() {
             <br/>
 
             <label className={styles.pure_material_textfield_outlined}>
-              <textarea name="message" placeholder=" "  rows="4" cols="50" ref={register({required: true})}/>
+              <textarea name="message" placeholder=" "  rows="4" cols="50" ref={register({required: false})}/>
               <span>Meddelande</span>
             </label>
             <br/>
