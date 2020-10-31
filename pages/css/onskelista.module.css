@@ -26,6 +26,10 @@
     padding: 0 7%;
 }
 
+.card em{
+    font-size: 0.9em;
+}
+
 .card iframe{
     margin-top: 1.5em;
     margin-bottom: 2em;

@@ -110,7 +110,7 @@ export default function OSA() {
         </label>    
         <br/>
           
-            <h4>Jag kommer delta på grillkväll</h4>
+            <h4>Jag kommer delta på grillkvällen</h4>
             <input type="radio" className={styles.radio} id="grill_ja" name="grill" value="Ja" ref={register({required: true})}/>
             <label for="grill_ja">  Ja</label><br/>
             <input type="radio" id="grill_nej" name="grill" value="Nej"/>

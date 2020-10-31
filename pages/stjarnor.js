@@ -38,7 +38,6 @@ export default function Home() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
         <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700&display=swap" rel="stylesheet"/>
-        <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Satisfy&display=swap"  rel="stylesheet"/>
         <title>Bröllop</title>
       </Head>
 
