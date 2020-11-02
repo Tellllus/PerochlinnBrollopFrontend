@@ -39,3 +39,10 @@
     color: var(--color-text-blue);
     z-index: -1;
 }
+
+
+@media screen and (max-width: 1000px) {
+    .img {
+        padding-top: 2em;
+    }
+}
