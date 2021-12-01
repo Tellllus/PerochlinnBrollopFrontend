@@ -10,7 +10,27 @@ import RichText  from '../components/rich-text';
 
 export default function Home() {
   
-  const query = gql`
+  const query = gql`{
+   
+      boende{
+           data {
+           attributes {
+             header
+             header_image {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
+            text_on_header_image
+            page_content
+           }
+          }
+         
+     }}`
+  /*const query = gql`
+
   {
     boende {
       header
@@ -30,6 +50,7 @@ export default function Home() {
     }
   }
 `
+*/
 const a = "https://www.google.com/maps/embed/v1/place?key=" + process.env.MAPS_API_KEY + "&q=Stenungsbaden+Yacht+Club";
   return (
    
@@ -43,14 +64,14 @@ const a = "https://www.google.com/maps/embed/v1/place?key=" + process.env.MAPS_A
       </Head>
 
       <Query query={query} id={null}>
-      {({ data: { boende: {header, header_image, text_on_header_image, page_content}, navigation: {links} }}) => {
+      {({ data: { boende: {data:{attributes: {header, header_image:{data:{attributes: {url}}}, text_on_header_image, page_content} }}} }) => {
         return (
           <div>
-             <Navigation elements={links}/>
+            {/* <Navigation elements={links}/>*/}
             <main className={styles.wrapper}>
               
               <div className={styles.img}>
-              <HeaderImage className={styles.headerImage} url={process.env.API_URL + header_image.url} text={text_on_header_image}/>
+              <HeaderImage className={styles.headerImage} url={process.env.API_URL + url} text={text_on_header_image}/>
               </div>
           
               <Card className={styles.card}>
