@@ -11,16 +11,27 @@ import RichText  from '../components/rich-text';
 
 export default function Home() {
 
-  const query = gql`
-  {
-    grillkvall {
-      header
-      header_image{
-        url
-      }
-      text_on_header_image
-      page_content
-    }
+  const query = gql`{
+   
+    grillkvall{
+         data {
+         attributes {
+           header
+           header_image {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+          text_on_header_image
+          page_content
+         }
+        }
+       
+   }}`
+
+    /*
     navigation {
       links{
         ... on ComponentNavigationNavigationElement {
@@ -30,7 +41,9 @@ export default function Home() {
       }
     }
   }
-`
+ `*/
+
+ 
   return (
    
   
@@ -43,17 +56,16 @@ export default function Home() {
       </Head>
 
       <Query query={query} id={null}>
-      {({ data: { grillkvall: {header, header_image, text_on_header_image, page_content}, navigation: {links} }}) => {
+      {({ data: { grillkvall: {data:{attributes: {header, header_image:{data:{attributes: {url}}}, text_on_header_image, page_content} }} }}) => {
 
-          console.log(header_image);
-
+          
         return (
             <div>
-            <Navigation elements={links}/>
+                 {/* <Navigation elements={links}/>*/}
            <main className={styles.wrapper}>
              
              <div className={styles.img}>
-             <HeaderImage className={styles.headerImage} url={process.env.API_URL + header_image.url} text={text_on_header_image}/>
+             <HeaderImage className={styles.headerImage} url={process.env.API_URL + url} text={text_on_header_image}/>
              
              </div>
          

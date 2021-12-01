@@ -13,13 +13,23 @@ export default function OSA() {
 
     const query = gql`
   {
-    osa {
-      image{
-        url
+    osa{
+      data{
+        attributes{
+          header
+          page_content
+          image{
+            data{
+              attributes{
+                url
+              }
+            }
+          }
+        }
       }
-      header
-      page_content
     }
+    }`
+    /*
     navigation {
       links{
         ... on ComponentNavigationNavigationElement {
@@ -30,6 +40,7 @@ export default function OSA() {
     }
   }
 `
+*/
 
 
     const { register, handleSubmit, errors } = useForm();
@@ -88,10 +99,10 @@ export default function OSA() {
       </Head>
     
     <Query query={query} id={null}>
-    {({ data: { osa: {header, page_content, image}, navigation: {links}} }) => {
+    {({ data: {  osa: {data:{attributes: {header, image:{data:{attributes: {url}}}, page_content} }}} }) => {
         return (
         <div>
-            <Navigation elements={links}/>
+           {/* <Navigation elements={links}/>*/}
         <main className={styles.wrapper}>
             
         <Card className={styles.card}>
@@ -100,8 +111,8 @@ export default function OSA() {
         <h1>
           {header}
         </h1>
-        <img className={styles.imgLeft} src={process.env.API_URL + image.url}/>
-        <img className={styles.imgRight} src={process.env.API_URL + image.url}/>
+        <img className={styles.imgLeft} src={process.env.API_URL + url}/>
+        <img className={styles.imgRight} src={process.env.API_URL + url}/>
         <RichText>
           {page_content}
         </RichText>

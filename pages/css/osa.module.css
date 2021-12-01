@@ -216,6 +216,8 @@
     position: absolute;
     left: 10px;
     width: 28%;
+    margin-top: 23px;
+
     
 }
 .imgRight{
@@ -223,6 +225,7 @@
     position: absolute;
     right: 10px;
     width: 28%;
+    margin-top: 23px;
     
 }
 

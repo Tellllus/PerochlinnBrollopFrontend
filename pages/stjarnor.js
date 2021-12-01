@@ -11,15 +11,26 @@ import RichText  from '../components/rich-text';
 
 export default function Home() {
 
-  const query = gql`
-  {
-    stjarnor {
-      header
-      header_images{
-        url
-      }
-      page_content
-    }
+  const query = gql`{
+   
+    stjarnor{
+         data {
+         attributes {
+           header
+           header_image {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+          page_content
+         }
+        }
+       
+   }}`
+
+    /*
     navigation {
       links{
         ... on ComponentNavigationNavigationElement {
@@ -29,7 +40,7 @@ export default function Home() {
       }
     }
   }
-`
+ `*/
   return (
    
   
@@ -42,19 +53,16 @@ export default function Home() {
       </Head>
 
       <Query query={query} id={null}>
-      {({ data: { stjarnor: {header, header_images, page_content}, navigation: {links} }}) => {
+      {({ data: { stjarnor: {data:{attributes: {header, header_image:{data:{attributes: {url}}}, text_on_header_image, page_content} }} }}) => {
 
         return (
             <div>
-            <Navigation elements={links}/>
+            {/* <Navigation elements={links}/>*/}
            <main className={styles.wrapper}>
              
-             <div className={styles.imageContainer}>
-               {
-                 header_images.map(image => (
-                  <img src={process.env.API_URL + image.url}/>    
-                 ))
-               }          
+           <div className={styles.img}>
+             <HeaderImage className={styles.headerImage} url={process.env.API_URL + url} text={text_on_header_image}/>
+             
              </div>
          
              <Card className={styles.card}>

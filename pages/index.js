@@ -10,17 +10,28 @@ import Query  from '../components/query';
 
 export default function Home() {
 
-  const query = gql`
-  {
-    startsida {
-      header
-      header_image{
-        url
-      }
-      text_on_header_image
-      countdown_date
-      page_content
-    }
+  const query = gql`{
+   
+    index{
+         data {
+         attributes {
+           header
+           header_image {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+          text_on_header_image
+          page_content
+          countdown_date
+         }
+        }
+       
+   }}`
+
+    /*
     navigation {
       links{
         ... on ComponentNavigationNavigationElement {
@@ -30,7 +41,7 @@ export default function Home() {
       }
     }
   }
-`
+ `*/
   return (
    
   
@@ -43,17 +54,17 @@ export default function Home() {
       </Head>
 
       <Query query={query} id={null}>
-      {({ data: { startsida: {header, header_image, text_on_header_image, countdown_date, page_content}, navigation: {links}} }) => {
+      {({ data: { index: {data:{attributes: {header, header_image:{data:{attributes: {url}}}, text_on_header_image, page_content, countdown_date} }} }}) => {
         
         return (
           <div>
-            <Navigation elements={links}/>
+            {/* <Navigation elements={links}/>*/}
 
             <Countdown className={styles.counter} date={new Date(countdown_date)}/>
             <main className={styles.wrapper}>
               
               <div className={styles.img}>
-              <img src={process.env.API_URL  + header_image.url}></img>
+              <img src={process.env.API_URL  + url}></img>
               {text_on_header_image.split('\n').map((item, i) => (<p key={"header-image-text"+i}>{item}</p>))}
               </div>
           
