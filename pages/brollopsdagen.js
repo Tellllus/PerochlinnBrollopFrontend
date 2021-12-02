@@ -7,7 +7,7 @@ import styles from './css/brollopsdagen.module.css'
 import gql from 'graphql-tag';
 import Query from '../components/query';
 import RichText from '../components/rich-text';
-import InfoBox from '../components/info-box';
+import InfoBoxComponent from '../components/info-box';
 
 export default function Home() {
 
@@ -35,6 +35,16 @@ export default function Home() {
       }
     }
   }
+  navigation{
+    data {
+     attributes {
+       navigation_element {
+         link_url
+         link_text
+       }
+     }
+   }
+  }
   }
 `
 
@@ -60,14 +70,27 @@ export default function Home() {
       </Head>
 
       <Query query={query} id={null}>
-        {({ data: { brollopsdagen: { data: { attributes: { header, header_text, InfoBox, hashtag_img, hashtag_header, hashtag_text } } }/*, navigation: { links } */ } }) => {
-
-          {
-            console.log(chunk(infobox, 2))
+        {({
+          data: {
+            brollop: {
+              data: {
+                attributes: {
+                  header,
+                  header_text,
+                  InfoBox,
+                  hashtag_img,
+                  hashtag_header,
+                  hashtag_text
+                }
+              }
+            },
+            navigation: { data: { attributes: { navigation_element } } }
           }
+        }) => {
+
           return (
             <div>
-              <Navigation elements={links} />
+              <Navigation elements={navigation_element} />
               <main className={styles.wrapper}>
 
                 <Card className={styles.card}>
@@ -78,20 +101,22 @@ export default function Home() {
                   <p>{header_text}</p>
 
                   <div className={styles.infoboxes}>
-                    {chunk(infobox, 2).map((element) => {
+                    {chunk(InfoBox, 2).map((element) => {
+                      console.log(element)
                       let first = element[0]
                       let second = element[1]
                       return (
                         <div className={styles.row}>
-                          <InfoBox className={styles.left} url={process.env.API_URL + first.image.url} header={first.header} text={first.text} />
-                          {second ? <InfoBox className={styles.right} url={process.env.API_URL + second.image.url} header={second.header} text={second.text} /> : ""}
+                          <InfoBoxComponent className={styles.left} url={process.env.API_URL + first.image.data.attributes.url} header={first.header} text={first.text} />
+                          {second ? <InfoBoxComponent className={styles.right} url={process.env.API_URL + second.image.data.attributes.url} header={second.header} text={second.text} /> : ""}
+
                         </div>
                       )
                     })}
                   </div>
 
                   <div className={styles.hashtag}>
-                    <img src={process.env.API_URL + hashtag_img.url} />
+                    <img src={process.env.API_URL + hashtag_img.data.attributes.url} />
                     <h3>{hashtag_header}</h3>
                     <RichText>{hashtag_text}</RichText>
                   </div>

@@ -6,8 +6,8 @@ import Link from 'next/link'
 
 
 class Navigation extends React.Component {
-  
-  constructor(props){
+
+  constructor(props) {
     super(props);
     this.state = {
       scrollingLock: true,
@@ -18,56 +18,56 @@ class Navigation extends React.Component {
     this.toggleHamburger = this.toggleHamburger.bind(this);
   }
 
-componentDidMount(){
+  componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
-}
+  }
 
-componentWillUnmount() {
+  componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
-}
+  }
 
-handleScroll() {
-  let lockPoint = 0;
-  if (window.scrollY > lockPoint && !this.state.scrollingLock ){
+  handleScroll() {
+    let lockPoint = 0;
+    if (window.scrollY > lockPoint && !this.state.scrollingLock) {
+      this.setState({
+        scrollingLock: true
+      });
+    } else if (window.scrollY < lockPoint && this.state.scrollingLock) {
+      this.setState({
+        scrollingLock: false
+      });
+    }
+  }
+
+  toggleHamburger() {
     this.setState({
-      scrollingLock: true
-    });
-  } else if (window.scrollY < lockPoint && this.state.scrollingLock) {
-    this.setState({
-      scrollingLock: false
+      mobileMenu: !this.state.mobileMenu
     });
   }
-}
-
-toggleHamburger() {
-  this.setState({
-    mobileMenu: !this.state.mobileMenu
-  });
-}
 
   render() {
     return (
       <div>
 
-    <div className={[styles.hamburger, this.state.mobileMenu ? styles.hamburgerActive : ""].join(" ")} onClick={this.toggleHamburger}>  
-        <span className={styles.hamburgerIcon}/>
-    </div>
+        <div className={[styles.hamburger, this.state.mobileMenu ? styles.hamburgerActive : ""].join(" ")} onClick={this.toggleHamburger}>
+          <span className={styles.hamburgerIcon} />
+        </div>
 
         <nav className={[styles.nav, this.state.scrollingLock ? styles.sticky : "", this.state.mobileMenu ? styles.active : ""].join(" ")} >
-         <ul className={styles.ul}>
+          <ul className={styles.ul}>
             {this.props.elements.map(element => (
-                <li className={styles.li}>
-                    <Link href={element.link_url}>
-                      <a className={styles.a}>{element.link_text}</a>
-                    </Link>
-                </li>
+              <li className={styles.li} key={element.link_text}>
+                <Link href={element.link_url}>
+                  <a className={styles.a}>{element.link_text}</a>
+                </Link>
+              </li>
             ))}
-         </ul>
-     </nav>
-     <div className={styles.spacer}>
-     </div>
+          </ul>
+        </nav>
+        <div className={styles.spacer}>
+        </div>
       </div>
-     
+
     )
   }
 }

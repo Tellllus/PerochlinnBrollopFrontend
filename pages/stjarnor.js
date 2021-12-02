@@ -27,19 +27,18 @@ export default function Home() {
         }
       }
     }
+    navigation{
+      data {
+       attributes {
+         navigation_element {
+           link_url
+           link_text
+         }
+       }
+     }
+    }
   }`
 
-  /*
-  navigation {
-    links{
-      ... on ComponentNavigationNavigationElement {
-      link_text
-      link_url
-      }
-    }
-  }
-}
-`*/
   return (
 
 
@@ -52,11 +51,11 @@ export default function Home() {
       </Head>
 
       <Query query={query} id={null}>
-        {({ data: { stjarnor: { data: { attributes: { header, header_images, page_content } } } } }) => {
+        {({ data: { stjarnor: { data: { attributes: { header, header_images, page_content } } }, navigation: { data: { attributes: { navigation_element } } } } }) => {
 
           return (
             <div>
-              {/* <Navigation elements={links}/>*/}
+              <Navigation elements={navigation_element} />
               <main className={styles.wrapper}>
 
                 <div className={styles.imageContainer}>
