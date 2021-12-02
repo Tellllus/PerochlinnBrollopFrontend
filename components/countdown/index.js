@@ -4,41 +4,64 @@ import ReactDOM from 'react-dom';
 import Countdown from "react-countdown";
 
 class Countdown1 extends React.Component {
-  
-  constructor(){
+
+  constructor() {
     super()
     this.state = {
     };
   }
 
-renderer = ({ days, hours, minutes, seconds, completed }) => {
+  renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
-      
+
       return (
-          <div> </div>
+        <div> </div>
       );
     } else {
       // Render a countdown
       return (
-        
-        <span className={styles.counter + " " + this.props.className}>
-          {days} {hours < 10 ? "0"+hours : hours}:{ minutes < 10 ? "0"+minutes : minutes}:{seconds < 10 ? "0"+seconds : seconds}
-          <br/>
-          <div className={styles.labels}>
-            <span lassName={styles.counter}>Dagar</span> <span>Timmar</span> <span>Minuter</span> <span>Sekunder</span>
-          </div>
-          
-        </span>
-        
+
+        <div className={styles.counter + " " + this.props.className}>
+          <span className={styles.counterElement}>
+            <span class="count"> {days}</span><br />
+            <span className={styles.labels}>Dagar</span>
+          </span>
+          &nbsp;
+          <span className={styles.counterElement}>
+            <span class="count">  {hours < 10 ? "0" + hours : hours}</span><br />
+            <span className={styles.labels}>Timmar</span>
+          </span>
+
+          <span className={styles.counterElement}>
+            <span class="count">:</span><br />
+            <span className={styles.labels}>&nbsp;</span>
+          </span>
+
+          <span className={styles.counterElement}>
+            <span class="count"> {minutes < 10 ? "0" + minutes : minutes}</span><br />
+            <span className={styles.labels}>Minuter</span>
+          </span>
+
+          <span className={styles.counterElement}>
+            <span class="count">:</span><br />
+            <span className={styles.labels}>&nbsp;</span>
+          </span>
+
+          <span className={styles.counterElement}>
+            <span class="count"> {seconds < 10 ? "0" + seconds : seconds}</span><br />
+            <span className={styles.labels}>Sekunder</span>
+          </span>
+        </div>
+
       );
     }
   };
 
   render() {
     return (
-     <div>
-          <Countdown date={this.props.date} renderer={this.renderer} />
-     </div>
+      <div>
+        <Countdown date={this.props.date} renderer={this.renderer} />
+      </div>
     )
   }
 }

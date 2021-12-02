@@ -1,11 +1,16 @@
 
+.counterElement {
+    display: inline-block;
+    text-align: center;
+}
+
 .counter{
     font-family: sans-serif;
     font-weight: 700;
     text-align: justify;
     font-size: 50px;
     margin: 0 auto;
-    width: 300px;
+    width: 350px;
     position: relative;
     display: block;
 }
@@ -13,6 +18,7 @@
 .labels{
     position: relative;
     font-size: 0.26em;
+    top: -35px;
 }
 
 .labels span{
