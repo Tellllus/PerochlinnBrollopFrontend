@@ -17,8 +17,12 @@ export default function Home() {
         attributes {
           header
           page_content
-          pictures {
-            url
+          pictures{  
+            data{
+              attributes {
+                url
+              }
+            }
           }
         }
       }
@@ -57,10 +61,10 @@ export default function Home() {
       </Head>
 
       <Query query={query} id={null}>
-        {({ data: { bilder: { header, page_content, pictures }, navigation: { data: { attributes: { navigation_element } } } } }) => {
+        {({ data: { bilder: { data: { attributes: { header, pictures, page_content } } }, navigation: { data: { attributes: { navigation_element } } } } }) => {
           return (
             <div>
-              <Navigation elements={links} />
+              <Navigation elements={navigation_element} />
               <main className={styles.wrapper}>
 
                 <Card className={styles.card}>
@@ -70,13 +74,13 @@ export default function Home() {
                   <RichText >{page_content}</RichText>
                   {console.log(pictures)}
 
-                  {pictures.map((element) => {
+                  {pictures.data.map((element => {
                     return (
                       <div className={styles.row}>
-                        <img src={process.env.API_URL + element.url} />
+                        <img src={process.env.API_URL + element.attributes.url} />
                       </div>
                     )
-                  })}
+                  }))}
                 </Card>
               </main>
             </div>
