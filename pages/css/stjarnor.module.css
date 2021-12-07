@@ -23,9 +23,11 @@ padding: 0 15%
 .imageContainer img
 {
     display: inline-block;
-    width: 250px;
+    max-width: 250px;
     border-radius: 100%;
+    width:45%;
     max-height: 308px;
+    
 }
 
 .imageContainer img:nth-child(even){
