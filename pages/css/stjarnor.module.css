@@ -28,6 +28,7 @@ padding: 0 15%
     width:45%;
     max-height: 308px;
     
+    
 }
 
 .imageContainer img:nth-child(even){
@@ -47,4 +48,18 @@ padding: 0 15%
     text-align: center;
     padding: 0 7%;
     font-size: 1.2em;
+}
+
+@media screen and (max-width: 600px) {
+
+    .imageContainer img
+{
+    display: inline-block;
+    max-width: 250px;
+    border-radius: 100%;
+    width:45%;
+    max-height: 106px;
+    
+    
+}
 }
