@@ -19,7 +19,7 @@
     "apollo-link-http": "^1.5.17",
     "dotenv": "^8.2.0",
     "emailjs-com": "^2.6.3",
-    "graphql": "^15.1.0",
+    "graphql": "^14.3.1",
     "graphql-tag": "^2.10.3",
     "isomorphic-unfetch": "^3.0.0",
     "next": "9.4.4",
